@@ -1,7 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: 'Gatstrap',
-    author: 'Jaxx2104',
+    description: 'Gatsby starter for bootstrap a blog',
+    siteUrl: 'https://gatstrap.netlify.com',
+    author: 'jaxx2104',
+    twitter: 'jaxx2104',
   },
   pathPrefix: '/',
   plugins: [
@@ -36,16 +39,44 @@ module.exports = {
         ],
       },
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sass',
-    'gatsby-plugin-sharp',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Gatstrap',
+        short_name: 'Gatstrap',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#673ab7',
+        display: 'minimal-ui',
+        icons: [
+          {
+            src: '/img/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/img/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+      },
+    },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: '',
       },
     },
+    'gatsby-plugin-catch-links',
+    'gatsby-plugin-netlify',
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-react-next',
+    'gatsby-plugin-sass',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-twitter',
+    'gatsby-transformer-sharp',
   ],
 }

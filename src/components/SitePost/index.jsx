@@ -3,13 +3,14 @@ import Link from 'gatsby-link'
 import get from 'lodash/get'
 import size from 'lodash/size'
 import ReadNext from '../ReadNext'
+import './style.scss'
 
 class SitePost extends React.Component {
-  more(body, path) {
-    if (body.match('<!--more-->')) {
+  more(isMore, path) {
+    if (isMore) {
       return (
         <Link className="readmore" to={path}>
-          <span className="btn btn-outline-danger btn-block">MORE</span>
+          <span className="btn btn-outline-primary btn-block">MORE</span>
         </Link>
       )
     }
@@ -34,7 +35,7 @@ class SitePost extends React.Component {
     const categories = []
     data.forEach((category, i) => {
       categories.push(
-        <span className="badge badge-danger" key={i}>
+        <span className="badge badge-primary text-white" key={i}>
           {category}
         </span>
       )
@@ -48,14 +49,15 @@ class SitePost extends React.Component {
     const title = get(data, 'frontmatter.title')
     const path = get(data, 'frontmatter.path')
     const date = get(data, 'frontmatter.date')
-    const desc = get(data, 'frontmatter.description') || get(data, 'html')
+    const description = get(data, 'frontmatter.description')
+    const html = get(data, 'html')
     const cate =
       get(data, 'frontmatter.category') || get(data, 'frontmatter.categories')
 
     const categories = cate ? this.categories(cate) : ''
-    const description = isIndex ? this.description(desc) : desc
-    const more = isIndex ? this.more(desc, path) : ''
     const footer = isIndex ? '' : <ReadNext data={site} />
+    const desc = isIndex ? description || this.description(html) : html
+    const more = isIndex ? this.more(!!desc, path) : ''
 
     return (
       <div className="container">
@@ -63,18 +65,14 @@ class SitePost extends React.Component {
           <div className="article-wrap" key={path}>
             <div className="page-header">
               <Link style={{ boxShadow: 'none' }} to={path}>
-                <h1>
-                  {title}
-                </h1>
-                <time dateTime={date}>
-                  {date}
-                </time>
+                <h1>{title}</h1>
+                <time dateTime={date}>{date}</time>
               </Link>
               {categories}
             </div>
             <div
               className="page-content"
-              dangerouslySetInnerHTML={{ __html: description }}
+              dangerouslySetInnerHTML={{ __html: desc }}
             />
             {more}
             {footer}

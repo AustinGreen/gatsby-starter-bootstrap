@@ -6,7 +6,7 @@
 
 Gatsby starter for bootstrap a blog
 
-![](http://i.imgur.com/Ox8As5P.png)
+![](https://i.imgur.com/Qcd3NwR.png)
 
 
 ## GatsbyJS v1
@@ -29,3 +29,7 @@ Install this starter (assuming Gatsby is installed) by running from your CLI:
 ## Usage
 develop
 `gatsby develop`
+
+### Custom Theme
+`/src/layouts/gatsrap.css`
+

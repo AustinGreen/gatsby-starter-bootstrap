@@ -34,6 +34,11 @@ export default class HTML extends React.Component {
           />
           {this.props.headComponents}
           {css}
+          <link
+            href="/img/apple-touch-icon.png"
+            rel="apple-touch-icon"
+            sizes="180x180"
+          />
           <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
         </head>
         <body>
@@ -42,8 +47,6 @@ export default class HTML extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
-          <script async src="//buttons.github.io/buttons.js" />
-          <script async src="//platform.twitter.com/widgets.js" />
         </body>
       </html>
     )
